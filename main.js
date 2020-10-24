@@ -5,13 +5,11 @@ Have it appear in the DOM
 Repeat
 */
 
-
-
 const url = 'http://quotes.stormconsultancy.co.uk/random.json',
     box = document.querySelector('main'),
     button = document.querySelector('#random-button');
 
-
+// ON Button click, webpage pings API and display quote   
 button.addEventListener('click', function() { callAPI()
         .then(response => {
         console.log(response);
@@ -22,7 +20,8 @@ button.addEventListener('click', function() { callAPI()
         
         // Determines if the inserted content element exists
         if(insertedContent) insertedContent.parentNode.removeChild(insertedContent);
-
+        
+        // Div creation with HTML
         main.insertAdjacentHTML('beforeend',
             `<div class='inserted-content'>
             <h2>${response.quote}</h2>
