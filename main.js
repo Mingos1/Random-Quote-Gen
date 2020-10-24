@@ -5,13 +5,38 @@ Have it appear in the DOM
 Repeat
 */
 
-const callAPI = async () => {
+
+
+const url = 'http://quotes.stormconsultancy.co.uk/random.json',
+    box = document.querySelector('main'),
+    button = document.querySelector('#random-button');
+
+
+button.addEventListener('click', function() { callAPI()
+        .then(response => {
+        console.log(response);
+
+        let main = document.querySelector('main');
+        // Div that's created when the Randomize button is pressed; COntains Quote and author
+        let insertedContent = document.querySelector('.inserted-content');
+        
+        // Determines if the inserted content element exists
+        if(insertedContent) insertedContent.parentNode.removeChild(insertedContent);
+
+        main.insertAdjacentHTML('beforeend',
+            `<div class='inserted-content'>
+            <h2>${response.quote}</h2>
+            <h3>${response.author}</h3> 
+        </div>`
+        );
+    })
+    .catch(reason => console.log(reason.message))
+});
+
+async function callAPI() {
     const response = await fetch(url);
     return await response.json();
 }
-const url = 'http://quotes.stormconsultancy.co.uk/random.json';
-const box = document.querySelector('main');
-const button = document.querySelector('');
 
 function createElement(element) {
     return document.createElement(element);
@@ -20,15 +45,3 @@ function createElement(element) {
 function append(parent, element) {
     return parent.append(element);
 }
-
-callAPI()
-    .then(data => {
-        let main = document.querySelector('main');
-        main.insertAdjacentHTML( 'beforeend',
-            `<div>
-                <h2>${data.quote}</h2>
-                <h3>${data.author}</h3> 
-            </div>`
-        );
-    })
-    .catch(reason => console.log(reason.message))
