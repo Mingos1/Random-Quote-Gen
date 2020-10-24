@@ -5,7 +5,7 @@ Have it appear in the DOM
 Repeat
 */
 
-const url = 'http://quotes.stormconsultancy.co.uk/random.json',
+const url = 'https://api.quotable.io/random',
     box = document.querySelector('main'),
     button = document.querySelector('#random-button');
 
@@ -24,7 +24,7 @@ button.addEventListener('click', function() { callAPI()
         // Div creation with HTML
         main.insertAdjacentHTML('beforeend',
             `<div class='inserted-content'>
-            <h2>${response.quote}</h2>
+            <h2>${response.content}</h2>
             <h3>${response.author}</h3> 
         </div>`
         );
