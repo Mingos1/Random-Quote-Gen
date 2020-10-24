@@ -1,4 +1,4 @@
-# Foobar
+# Random Quote Generator
 
 Random Quote generator is project I built to help me better understand DOM manipulation, async/await, and API endpoints. 
 
