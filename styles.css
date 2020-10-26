@@ -1,12 +1,8 @@
-
-
 body, html {
     height: 100%;
     display: grid;
     overflow: hidden;
 }
-
-
 
 /* Top section */
 #top-header {
@@ -20,10 +16,10 @@ body, html {
     color: #dbdbdb; 
 }
 
-#page-title {
+/*#page-title {
     
 
-}
+}*/
 
 /* Main Section properties  */
 #body-wrapper {
@@ -32,10 +28,10 @@ body, html {
     flex-direction: column;
     align-items: center;
 }
-
+/*
 main {
 }
-
+*/
 #inserted-content {
     max-width: 400px;
     padding: 2px;
@@ -43,19 +39,20 @@ main {
     border-radius: 10px;
     padding: 30px;
 }
-
-#auote-text {
+/*
+#quote-text {
 
 }
 
 #author-text {
 
 }
-
+*/
 /* Button properties */
+/*
 #button-wrapper {
 }
-
+*/
 .button {
     border: 0;
     border-radius: 0.5rem;
