@@ -5,42 +5,50 @@ Have it appear in the DOM
 Repeat
 */
 
+//https://coolors.co/0081a7-00afb9-fdfcdc-fed9b7-f07167
+
 const url = 'https://api.quotable.io/random',
     box = document.querySelector('main'),
-    button = document.querySelector('#random-button');
+    button = document.querySelector('.button'),
+    arrayColors = ['#0081A7', '#00AFB9', '#E75A7C', '#731DD8', '#1B1B3A'];
 
-// ON Button click, webpage pings API and display quote   
-button.addEventListener('click', function() { callAPI()
-        .then(response => {
-        console.log(response);
 
-        let main = document.querySelector('main');
-        // Div that's created when the Randomize button is pressed; COntains Quote and author
-        let insertedContent = document.querySelector('.inserted-content');
-        
-        // Determines if the inserted content element exists
-        if(insertedContent) insertedContent.parentNode.removeChild(insertedContent);
-        
-        // Div creation with HTML
-        main.insertAdjacentHTML('beforeend',
-            `<div class='inserted-content'>
-            <h2>${response.content}</h2>
-            <h3>${response.author}</h3> 
-        </div>`
-        );
-    })
-    .catch(reason => console.log(reason.message))
-});
+function addToDOM(response) {
+    let main = document.querySelector('main');
+    let insertedContent = document.querySelector('#inserted-content');
+    let color = arrayColors.shift();
+    arrayColors.push(color);
+    // Determines if the inserted content element exists
+
+    if (insertedContent) {
+        console.log('Element exists. Color now: ' + color);
+        insertedContent.parentNode.removeChild(insertedContent);
+    }
+
+    console.log('Before insertion ' + insertedContent);
+
+    insertedContent = main.insertAdjacentHTML('beforeend',
+        `<article id='inserted-content' style='background-color:${color};'>
+            <h2 id='quote-text'>"${response.content}"</h2>
+            <h3 id='author-text'>- ${response.author}</h3> 
+        </article>`
+    );
+    // Div creation with HTML
+    console.log('After insertion' + insertedContent);
+};
 
 async function callAPI() {
     const response = await fetch(url);
     return await response.json();
 }
 
-function createElement(element) {
-    return document.createElement(element);
-}
+// ON Button click, webpage pings API and display quote   
+button.addEventListener('click', function () {
+    callAPI()
+        .then(response => {
+            addToDOM(response);
 
-function append(parent, element) {
-    return parent.append(element);
-}
+            //console.log(response);
+        })
+        .catch(reason => console.log(reason.message))
+});
